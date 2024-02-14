@@ -6,7 +6,12 @@ import { api } from "@/utils/api";
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const { data, mutate } = api.post.helloMutation.useMutation();
 
+  const handleOnlick = () => {
+    mutate();
+    console.log(data);
+  };
   return (
     <>
       <Head>
@@ -47,7 +52,8 @@ export default function Home() {
             <p className="text-2xl text-white">
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </p>
-            <AuthShowcase />
+            <button onClick={handleOnlick}>fjkadfka</button>
+            {/* <AuthShowcase /> */}
           </div>
         </div>
       </main>
@@ -60,7 +66,7 @@ function AuthShowcase() {
 
   const { data: secretMessage } = api.post.getSecretMessage.useQuery(
     undefined, // no input
-    { enabled: sessionData?.user !== undefined }
+    { enabled: sessionData?.user !== undefined },
   );
 
   return (

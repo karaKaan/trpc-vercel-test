@@ -14,6 +14,10 @@ export const postRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`,
       };
     }),
+  helloMutation: publicProcedure.mutation(async ({ ctx, input }) => {
+    console.log("faskfjasdfjl");
+    return "afsdfasf";
+  }),
 
   create: protectedProcedure
     .input(z.object({ name: z.string().min(1) }))
