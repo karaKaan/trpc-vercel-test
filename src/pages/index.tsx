@@ -7,10 +7,11 @@ import { api } from "@/utils/api";
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
   const { data, mutate } = api.post.helloMutation.useMutation();
+  const { data: testData, mutate: test } = api.auth.testMutation.useMutation();
 
   const handleOnlick = () => {
-    mutate();
-    console.log(data);
+    test();
+    console.log({ testData });
   };
   return (
     <>
